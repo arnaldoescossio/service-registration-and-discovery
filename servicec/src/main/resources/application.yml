@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: servicec
+server:
+  port: 8083

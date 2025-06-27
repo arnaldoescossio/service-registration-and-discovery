@@ -7,23 +7,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
 
 @RestController
-public class ServiceBRestController {
+public class ServiceCRestController {
 
 	private final DiscoveryClient discoveryClient;
 	private final RestClient restClient;
 
-	public ServiceBRestController(DiscoveryClient discoveryClient, RestClient.Builder restClientBuilder) {
+	public ServiceCRestController(DiscoveryClient discoveryClient, RestClient.Builder restClientBuilder) {
 		this.discoveryClient = discoveryClient;
 		restClient = restClientBuilder.build();
 	}
 
-	@GetMapping("helloEureka")
+	@GetMapping("/helloWorld")
 	public String helloWorld() {
-		ServiceInstance serviceInstance = discoveryClient.getInstances("servicec").get(0);
-		String serviceAResponse = restClient.get()
-				.uri(serviceInstance.getUri() + "/helloWorld")
-				.retrieve()
-				.body(String.class);
-		return serviceAResponse;
+		return "Hello world from Service C";
 	}
 }
